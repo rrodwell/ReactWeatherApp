@@ -13,6 +13,12 @@ class ForecastCard extends Component {
                     text:'sunny_desc',
                     high: '90',
                     low: '65',
+                },
+                {
+                    day:'Tuesday',
+                    text:'sunny_desc',
+                    high: '90',
+                    low: '65',
                 }
             ],
         };
