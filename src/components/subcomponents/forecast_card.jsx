@@ -6,26 +6,7 @@ import { Sunny, SunShower, MostlySunny, Rainy, Cloudy, Snow, Storm, HighLow } fr
 class ForecastCard extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            weeklyForecast: [
-                {
-                    day:'Monday',
-                    text:'sunny_desc',
-                    high: '90',
-                    low: '65',
-                },
-                {
-                    day:'Tuesday',
-                    text:'sunny_desc',
-                    high: '90',
-                    low: '65',
-                }
-            ],
-        };
-    }
-
-    componentDidMount() {
-
+        this.state = {};
     }
 
     renderForecast = (desc) => {
@@ -51,8 +32,8 @@ class ForecastCard extends Component {
             <Card className='forecast-card'>
                 <div className='forecast-container center'>
                     <Row>
-                        {this.state.weeklyForecast.map(forecast =>
-                            <div className='forecast'>
+                        {this.props.weeklyForecast.map(forecast =>
+                            <div className='forecast' key={forecast.day}>
                                 <p>{forecast.day}</p>
                                 {this.renderForecast(forecast.text)}
                                 <HighLow high={forecast.high} low={forecast.low}/>

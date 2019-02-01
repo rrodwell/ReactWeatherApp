@@ -3,12 +3,12 @@ import { weaterIcons } from '../../assets/styles/index';
 
 const SunShower = () => {
     return (
-        <div class="icon sun-shower">
-            <div class="cloud"></div>
-            <div class="sun">
-                <div class="rays"></div>
+        <div className="icon sun-shower">
+            <div className="cloud"></div>
+            <div className="sun">
+                <div className="rays"></div>
             </div>
-            <div class="rain"></div>
+            <div className="rain"></div>
         </div>
     );
 }

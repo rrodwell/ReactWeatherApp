@@ -1,43 +1,61 @@
 import React, { Component } from 'react';
-import { Card, Button } from 'react-materialize';
+import { Button } from 'react-materialize';
 import { app } from '../../assets/styles/index';
 import { mostlySunny } from '../../assets/images/index';
+import { SearchForm } from './index';
+import $ from 'jquery';
 
 const styles = {
-    backgroundImage: `url(${mostlySunny})`
+    card: {
+         backgroundImage: `url(${mostlySunny})`
+    },
+    span: {
+        textTransform: 'capitalize',
+    }
+
 }
 class WeatherCard extends Component {
-    constructor(){
-        super();
-        this.state = {
-            forecast: 'Mostly Sunny',
-            temperature: '75'
-        }
+    constructor(props){
+        super(props);
+        this.state = {}
     }
+
+    convertToCelsius = () => {
+        $('.fahrenheit').removeClass('disabled');
+        $('.celsius').addClass('disabled');
+        this.props.convertCelsius();
+    }
+
+    convertToFahrenheit = () => {
+        $('.fahrenheit').addClass('disabled');
+        $('.celsius').removeClass('disabled');
+        this.props.convertFahrenheit();
+    }
+
+
     render(){
         return (
-            <div className='card' style={styles}>
-                <div class='layer'></div>
-                <div class='card-content'>
-                    <div class="search-wrapper">
-
+            <div className='card' style={styles.card}>
+                <div className='layer'></div>
+                <div className='card-content'>
+                    <div className="search-wrapper">
+                        <SearchForm getWeather={this.props.getWeather}/>
                     </div>
-                    <div class='metrics'>
-                        <Button class='celsius btn'>˚C</Button>
-                        <span style={{color:'white'}}>/</span>
-                        <Button class='fahrenheit btn disabled'>˚F</Button>
+                    <div className='metrics'>
+                        <Button className='celsius btn' onClick={this.convertToCelsius}>˚C</Button>
+                        <Button className='fahrenheit btn disabled' onClick={this.convertToFahrenheit}>˚F</Button>
                     </div>
-                    <span class="card-title">Hello, World!</span>
-                    <p>{this.state.forecast}</p>
+                    <span className="card-title" style={styles.span}>{this.props.city}, {this.props.state}</span>
+                    <p>{this.props.forecast}</p>
 
-                    <div class='row'>
-                        <div class='col s8'>
-                            <p class='temp'>
-                                {this.state.temperature}
+                    <div className='row'>
+                        <div className='col s8'>
+                            <p className='temp'>
+                                {this.props.temperature}
                             </p>
                         </div>
-                        <div class='col s4'>
-                            <p class='degrees'>˚</p>
+                        <div className='col s4'>
+                            <p className='degrees'>˚</p>
                         </div>
                     </div>
                 </div>
