@@ -10,22 +10,9 @@ class App extends Component {
     this.state = {
       location: '',
       state: '',
-      forecast: 'Mostly Sunny',
-      temperature: '75',
-      weeklyForecast: [
-        {
-            day:'Monday',
-            text:'sunny_desc',
-            high: '90',
-            low: '65',
-        },
-        {
-            day:'Tuesday',
-            text:'rainy_desc',
-            high: '90',
-            low: '65',
-        }
-      ],
+      forecast: '',
+      temperature: '',
+      weeklyForecast: [],
     }
   }
 

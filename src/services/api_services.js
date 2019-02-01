@@ -1,8 +1,9 @@
-import OAuth from 'oauth';
 import yahoo from '../config/yahoo_weather_creds';
 
-
+console.log(yahoo);
 export const getWeatherFromYahoo = (location) =>{
+    var OAuth = require('oauth');
+    
     return new Promise((resolve, reject)=>{
 
         let header = {
