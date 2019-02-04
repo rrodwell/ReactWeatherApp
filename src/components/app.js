@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { app } from '../assets/styles/index';
+import '../assets/styles/index';
 import { WeatherCard, ForecastCard } from './subcomponents/index';
 import { Row, Col } from 'react-materialize';
 import { getWeatherFromYahoo } from '../services/api_services';

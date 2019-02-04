@@ -1,5 +1,5 @@
 import React from 'react';
-import { weaterIcons } from '../../assets/styles/index';
+import '../../assets/styles/index';
 
 const Snow = () => {
     return (

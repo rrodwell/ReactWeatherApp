@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { weatherIcons } from '../../assets/styles/index';
-import { Card, Row, Col } from 'react-materialize';
+import '../../assets/styles/index';
+import { Card, Row } from 'react-materialize';
 import { Sunny, SunShower, MostlySunny, Rainy, Cloudy, Snow, Storm, HighLow } from '../forecasts/index';
 
 class ForecastCard extends Component {
@@ -17,25 +17,18 @@ class ForecastCard extends Component {
         let mostlySunny = [44];
         let sunShower = [37,38,39,40];
         if(storm.includes(code)){
-            console.log("storm")
             return <Storm/>
         } else if(mostlySunny.includes(code)){
-            console.log("MS")
             return <MostlySunny/>
         } else if(cloudy.includes(code)){
-            console.log("cloudy")
             return <Cloudy/>
         } else if(rainy.includes(code)){
-            console.log("rainy")
             return <Rainy/>
         } else if(snow.includes(code)){
-            console.log("snow")
             return <Snow/>
         } else if(sunShower.includes(code)){
-            console.log("ss")
             return <SunShower/>
         } else {
-            console.log("sunny")
             return <Sunny/>
         }
     }

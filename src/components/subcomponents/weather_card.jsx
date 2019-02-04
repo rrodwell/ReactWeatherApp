@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'react-materialize';
-import { app } from '../../assets/styles/index';
+import '../../assets/styles/index';
 import { mostlySunny } from '../../assets/images/index';
 import { SearchForm } from './index';
 import $ from 'jquery';
