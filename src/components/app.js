@@ -64,6 +64,8 @@ class App extends Component {
     });
   }
 
+  getDescription = (code) => {}
+
   render() {
     return (
       <div className="container">
