@@ -10,23 +10,18 @@ class ForecastCard extends Component {
     }
 
     renderForecast = (code) => {
-        let rainy = [8,9,10,11,12,17,18,35,45];
-        let cloudy = [19,20,21,22,23,24,25,26,27,28,29,30];
-        let snow = [5,6,7,13,14,15,16,41,42,43,46];
-        let storm = [0,1,2,3,4,47];
-        let mostlySunny = [44];
-        let sunShower = [37,38,39,40];
-        if(storm.includes(code)){
+        let desc = this.props.getDescription(code);
+        if(desc.toUpperCase() === 'STORM'){
             return <Storm/>
-        } else if(mostlySunny.includes(code)){
+        } else if(desc.toUpperCase() === 'OVERCAST'){
             return <MostlySunny/>
-        } else if(cloudy.includes(code)){
+        } else if(desc.toUpperCase() === 'CLOUDY'){
             return <Cloudy/>
-        } else if(rainy.includes(code)){
+        } else if(desc.toUpperCase() === 'RAIN'){
             return <Rainy/>
-        } else if(snow.includes(code)){
+        } else if(desc.toUpperCase() === 'SNOW'){
             return <Snow/>
-        } else if(sunShower.includes(code)){
+        } else if(desc.toUpperCase() === 'LIGHT RAIN'){
             return <SunShower/>
         } else {
             return <Sunny/>

@@ -19,7 +19,7 @@ class App extends Component {
 
   componentWillMount(){
     this.requestWeather('atlanta');
-    this.requestWeatherImage(this.getDescription(37));
+    // this.requestWeatherImage(this.getDescription(37));
   }
 
   requestWeather = (location) => {
@@ -107,7 +107,7 @@ class App extends Component {
             <WeatherCard {...this.state} convertCelsius={this.convertCelsius} convertFahrenheit={this.convertFahrenheit} getWeather={this.requestWeather}/>
           </Col>
           <Col className='content' s={3}>
-            <ForecastCard {...this.state}/>
+            <ForecastCard {...this.state} getDescription={this.getDescription}/>
           </Col>
         </Row>
       </div>
