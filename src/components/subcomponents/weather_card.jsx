@@ -6,9 +6,6 @@ import { SearchForm } from './index';
 import $ from 'jquery';
 
 const styles = {
-    card: {
-         backgroundImage: `url(${mostlySunny})`
-    },
     span: {
         textTransform: 'capitalize',
     }
@@ -32,10 +29,17 @@ class WeatherCard extends Component {
         this.props.convertFahrenheit();
     }
 
+    setBackgroundImage = () => {
+        if(this.props.imageSrc !== ''){
+            return this.props.imageSrc;
+        } else {
+            return mostlySunny;
+        }
+    }
 
     render(){
         return (
-            <div className='card' style={styles.card}>
+            <div className='card' style={{backgroundImage:`url(${this.setBackgroundImage()})`}}>
                 <div className='layer'></div>
                 <div className='card-content'>
                     <div className="search-wrapper">

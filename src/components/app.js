@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../assets/styles/index';
 import { WeatherCard, ForecastCard } from './subcomponents/index';
 import { Row, Col } from 'react-materialize';
-import { getWeatherFromYahoo } from '../services/api_services';
+import { getWeatherFromYahoo, getUnsplashImage } from '../services/api_services';
 
 class App extends Component {
   constructor(){
@@ -13,11 +13,13 @@ class App extends Component {
       forecast: '',
       temperature: '',
       weeklyForecast: [],
+      imageSrc: '',
     }
   }
 
   componentWillMount(){
     this.requestWeather('atlanta');
+    this.requestWeatherImage(this.getDescription(37));
   }
 
   requestWeather = (location) => {
@@ -34,7 +36,16 @@ class App extends Component {
         temperature:weather.current_observation.condition.temperature,
         weeklyForecast: upcomingWeather
       });
-   });
+      // this.requestWeather(weather.condition.code);
+    }).catch(err => {
+      console.error('Weather request failed.', err);
+    });
+  }
+
+  requestWeatherImage = (desc) => {
+    getUnsplashImage(desc).then(imageJson => {
+      this.setState({imageSrc:imageJson.urls.custom})
+    })
   }
 
   convertCelsius = () => {
@@ -64,7 +75,29 @@ class App extends Component {
     });
   }
 
-  getDescription = (code) => {}
+  getDescription = (code) => {
+    let rainy = [8,9,10,11,12,17,18,35,45];
+    let cloudy = [19,20,21,22,23,24,25,26,27,28,29,30];
+    let snow = [5,6,7,13,14,15,16,41,42,43,46];
+    let storm = [0,1,2,3,4,47];
+    let mostlySunny = [44];
+    let sunShower = [37,38,39,40];
+    if(storm.includes(code)){
+      return 'storm'
+    } else if(mostlySunny.includes(code)){
+        return 'overcast'
+    } else if(cloudy.includes(code)){
+        return 'cloudy'
+    } else if(rainy.includes(code)){
+        return 'rain'
+    } else if(snow.includes(code)){
+        return 'snow'
+    } else if(sunShower.includes(code)){
+        return 'light rain'
+    } else {
+        return 'sun'
+    }
+  }
 
   render() {
     return (

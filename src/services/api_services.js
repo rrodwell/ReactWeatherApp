@@ -1,5 +1,13 @@
 import OAuth from 'oauth';
+import Unsplash,{ toJson } from 'unsplash-js';
 import yahoo from '../config/yahoo_weather_creds';
+import unsplashKeys from '../config/unsplash_creds';
+
+const unsplash = new Unsplash({
+    applicationId: unsplashKeys.applicationId,
+    secret: unsplashKeys.secret,
+    callbackUrl: unsplashKeys.callbackUrl
+});
 
 export const getWeatherFromYahoo = (location) =>{
     return new Promise((resolve, reject)=>{
@@ -17,4 +25,17 @@ export const getWeatherFromYahoo = (location) =>{
             }
         );
     });
+}
+
+export const getUnsplashImage = (weatherDesc) => {
+    return new Promise((resolve,reject) => {
+        unsplash.photos.getRandomPhoto({ query:weatherDesc, height:800})
+        .then(toJson)
+        .then(json => {
+            resolve(json)
+        }).catch(err => {
+            console.error('Unsplash request failed.',err);
+            reject(err);
+        });
+    })
 }
