@@ -19,7 +19,6 @@ class App extends Component {
 
   componentWillMount(){
     this.requestWeather('atlanta');
-    // this.requestWeatherImage(this.getDescription(37));
   }
 
   requestWeather = (location) => {
@@ -36,17 +35,17 @@ class App extends Component {
         temperature:weather.current_observation.condition.temperature,
         weeklyForecast: upcomingWeather
       });
-      // this.requestWeather(weather.condition.code);
+      this.requestWeatherImage(this.getDescription(weather.current_observation.condition.code));
     }).catch(err => {
       console.error('Weather request failed.', err);
     });
-  }
+  };
 
   requestWeatherImage = (desc) => {
     getUnsplashImage(desc).then(imageJson => {
       this.setState({imageSrc:imageJson.urls.custom})
     })
-  }
+  };
 
   convertCelsius = () => {
     let celsius = Math.round(((this.state.temperature)- 32)*(5 / 9));
